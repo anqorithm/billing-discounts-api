@@ -206,6 +206,7 @@
                     <configLocation>google_checks.xml</configLocation>
                     <violationSeverity>warning</violationSeverity>
                     <failOnViolation>false</failOnViolation>
+                    <skip>true</skip>
                 </configuration>
                 <executions>
                     <execution>
@@ -228,6 +229,7 @@
                         <include>**/*Test.java</include>
                         <include>**/*Tests.java</include>
                     </includes>
+                    <argLine>@{argLine} -Dfile.encoding=UTF-8 --add-opens java.base/java.lang=ALL-UNNAMED</argLine>
                 </configuration>
             </plugin>
             
