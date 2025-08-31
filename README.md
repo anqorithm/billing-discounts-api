@@ -1,1 +1,1 @@
-# Billing Discounts API\
+# Billing Discounts API
