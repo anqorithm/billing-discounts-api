@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.time.LocalDateTime;
 
 @Service
 @Transactional
@@ -32,12 +33,14 @@ public class BillCalculationService implements BillCalculationInterface {
     private final CustomerRepository customerRepository;
     private final ProductRepository productRepository;
     private final List<Discount> availableDiscounts;
+    private final DiscountConfig discountConfig;
     
     public BillCalculationService(CustomerRepository customerRepository,
                                  ProductRepository productRepository,
                                  DiscountConfig discountConfig) {
         this.customerRepository = customerRepository;
         this.productRepository = productRepository;
+        this.discountConfig = discountConfig;
         this.availableDiscounts = List.of(
             new EmployeeDiscount(discountConfig.getEmployeePercentage()),
             new AffiliateDiscount(discountConfig.getAffiliatePercentage()), 
@@ -54,7 +57,7 @@ public class BillCalculationService implements BillCalculationInterface {
         
         Money totalDiscount = calculateTotalDiscount(bill, customer);
         
-        return mapToResponse(request.getCustomerId(), billItems, bill, totalDiscount);
+        return mapToResponse(customer, billItems, bill, totalDiscount);
     }
     
     private Customer findCustomerById(String customerId) {
@@ -79,28 +82,72 @@ public class BillCalculationService implements BillCalculationInterface {
     }
     
     private Money calculateTotalDiscount(Bill bill, Customer customer) {
-        return availableDiscounts.stream()
-            .filter(discount -> discount.isApplicable(bill, customer))
-            .map(discount -> discount.calculateDiscount(bill, customer))
-            .reduce(Money.zero(), Money::add);
+        Money percentageDiscount = getBestPercentageDiscount(bill, customer);
+        
+        Money billBasedDiscount = new BillBasedDiscount(
+            discountConfig.getBillThreshold(), 
+            discountConfig.getBillDiscountAmount()
+        ).calculateDiscount(bill, customer);
+        
+        return percentageDiscount.add(billBasedDiscount);
     }
     
-    private BillCalculationResponse mapToResponse(String customerId, List<BillItem> billItems, 
+    private Money getBestPercentageDiscount(Bill bill, Customer customer) {
+        Money bestDiscount = Money.zero();
+        
+        if (customer.isEmployee()) {
+            bestDiscount = new EmployeeDiscount(discountConfig.getEmployeePercentage())
+                .calculateDiscount(bill, customer);
+        }
+        else if (customer.isAffiliate()) {
+            bestDiscount = new AffiliateDiscount(discountConfig.getAffiliatePercentage())
+                .calculateDiscount(bill, customer);
+        }
+        else if (customer.isLoyalCustomer(LocalDateTime.now())) {
+            bestDiscount = new LoyaltyDiscount(discountConfig.getLoyaltyPercentage())
+                .calculateDiscount(bill, customer);
+        }
+        
+        return bestDiscount;
+    }
+    
+    private BillCalculationResponse mapToResponse(Customer customer, List<BillItem> billItems, 
                                                  Bill bill, Money totalDiscount) {
+        
         List<BillItemResponse> itemResponses = billItems.stream()
                 .map(this::mapBillItemToResponse)
                 .collect(Collectors.toList());
         
+        Money percentageDiscount = getBestPercentageDiscount(bill, customer);
+        Money billBasedDiscount = new BillBasedDiscount(
+            discountConfig.getBillThreshold(), 
+            discountConfig.getBillDiscountAmount()
+        ).calculateDiscount(bill, customer);
+        
+        String discountType = getDiscountType(customer);
+        
         return new BillCalculationResponse(
-                customerId,
+                customer.getId(),
                 itemResponses,
                 bill.getSubtotal().getAmount(),
-                totalDiscount.getAmount(),
-                "MIXED",
-                Money.zero().getAmount(),
-                totalDiscount.getAmount(),
-                bill.getSubtotal().subtract(totalDiscount).getAmount()
+                percentageDiscount.getAmount(),
+                discountType,
+                billBasedDiscount.getAmount(),
+                percentageDiscount.add(billBasedDiscount).getAmount(),
+                bill.getSubtotal().subtract(percentageDiscount.add(billBasedDiscount)).getAmount()
         );
+    }
+    
+    private String getDiscountType(Customer customer) {
+        if (customer.isEmployee()) {
+            return "EMPLOYEE";
+        } else if (customer.isAffiliate()) {
+            return "AFFILIATE";
+        } else if (customer.isLoyalCustomer(LocalDateTime.now())) {
+            return "LOYALTY";
+        } else {
+            return null;
+        }
     }
     
     private BillItemResponse mapBillItemToResponse(BillItem billItem) {
