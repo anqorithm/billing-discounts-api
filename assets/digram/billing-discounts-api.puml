@@ -1,0 +1,108 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+package "Presentation Layer" {
+  class BillController {
+    + calculateBill(BillCalculationRequest): ResponseEntity
+  }
+  class "BillCalculationRequest" as BillCalculationRequestDTO <<DTO>>
+  class "BillCalculationResponse" as BillCalculationResponseDTO <<DTO>>
+}
+
+package "Application Layer" {
+  interface BillCalculationInterface {
+    + calculateBillDiscount(BillCalculationRequest): BillCalculationResponse
+  }
+  class BillCalculationService {
+    - customerRepository: CustomerRepository
+    - productRepository: ProductRepository
+    - discountConfig: DiscountConfig
+    + calculateBillDiscount(BillCalculationRequest): BillCalculationResponse
+  }
+}
+
+package "Domain Layer" {
+  package "Model" {
+    class Bill {
+      - customerId: String
+      - items: List<BillItem>
+      + getSubtotal(): Money
+      + getNonGroceryAmount(): Money
+    }
+    class BillItem {
+      - product: Product
+      - quantity: int
+    }
+    class Customer {
+      - type: CustomerType
+      - registrationDate: LocalDateTime
+    }
+    class Product {
+      - category: ProductCategory
+      - price: Money
+    }
+  }
+
+  package "Value Objects" {
+    class "Money" as MoneyVO <<Value Object>>
+    class "Percentage" as PercentageVO <<Value Object>>
+  }
+
+  package "Enums" {
+    enum CustomerType
+    enum ProductCategory
+  }
+
+  package "Discount Strategy" {
+    abstract class Discount {
+      + calculateDiscount(Bill, Customer): Money
+    }
+    class EmployeeDiscount
+    class AffiliateDiscount
+    class LoyaltyDiscount
+    class BillBasedDiscount
+  }
+}
+
+package "Infrastructure Layer" {
+  interface CustomerRepository
+  interface ProductRepository
+  class "DiscountConfig" as DiscountConfigComponent <<Component>>
+}
+
+' Relationships within Domain
+Bill "1" *-- "1..*" BillItem
+BillItem "1" *-- "1" Product
+Bill "1" -- "1" Customer
+Customer -- CustomerType
+Product -- ProductCategory
+Product *-- "1" MoneyVO
+PercentageVO --|> MoneyVO
+
+' Discount Strategy Implementation
+Discount <|-- EmployeeDiscount
+Discount <|-- AffiliateDiscount
+Discount <|-- LoyaltyDiscount
+Discount <|-- BillBasedDiscount
+
+' Layer Dependencies
+BillController --> BillCalculationInterface
+BillCalculationService .up.|> BillCalculationInterface
+
+BillCalculationService --> CustomerRepository
+BillCalculationService --> ProductRepository
+BillCalculationService --> DiscountConfigComponent
+BillCalculationService ..> Bill
+BillCalculationService ..> Customer
+BillCalculationService ..> Product
+BillCalculationService ..> Discount
+
+' DTO Usage
+BillController ..> BillCalculationRequestDTO
+BillController ..> BillCalculationResponseDTO
+BillCalculationInterface ..> BillCalculationRequestDTO
+BillCalculationInterface ..> BillCalculationResponseDTO
+
+@enduml

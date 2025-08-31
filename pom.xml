@@ -18,7 +18,10 @@
         <license/>
     </licenses>
     <developers>
-        <developer/>
+        <developer>
+            <name>Abdullah Alqahtani</name>
+            <email>anqorithm@protonmail.com</email>
+        </developer>
     </developers>
     <scm>
         <connection/>
