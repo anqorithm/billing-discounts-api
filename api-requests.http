@@ -1,0 +1,310 @@
+### Billing Discounts API - HTTP Requests
+### Base URL: http://localhost:8080
+
+###
+GET http://localhost:8080/
+Accept: application/json
+
+###
+GET http://localhost:8080/api/v1/bills/health
+Accept: application/json
+
+###
+GET http://localhost:8080/actuator/health
+Accept: application/json
+
+###
+GET http://localhost:8080/actuator/info
+Accept: application/json
+
+###
+GET http://localhost:8080/v3/api-docs
+Accept: application/json
+
+###
+GET http://localhost:8080/swagger-ui.html
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e1",
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f1",
+      "quantity": 1
+    },
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f2",
+      "quantity": 2
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e2",
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f3",
+      "quantity": 2
+    },
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f4",
+      "quantity": 1
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e3",
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f1",
+      "quantity": 1
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e4",
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f1",
+      "quantity": 1
+    },
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f3",
+      "quantity": 1
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e1",
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f1",
+      "quantity": 5
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e1",
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f2",
+      "quantity": 20
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e1",
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f1",
+      "quantity": 1,
+      "unitPrice": 899.99
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e2",
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f1",
+      "quantity": 1
+    },
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f2",
+      "quantity": 5
+    },
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f3",
+      "quantity": 1
+    },
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f4",
+      "quantity": 3
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e3",
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f3",
+      "quantity": 4
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e4",
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f4",
+      "quantity": 2
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "invalid-customer-id",
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f1",
+      "quantity": 1
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e1",
+  "items": [
+    {
+      "productId": "invalid-product-id",
+      "quantity": 1
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f1",
+      "quantity": 1
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e1",
+  "items": []
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e1",
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f1",
+      "quantity": -1
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e1",
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f1",
+      "quantity": 0
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e1",
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f1",
+      "quantity": 2,
+      "unitPrice": 899.99
+    },
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f2",
+      "quantity": 10
+    },
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f3",
+      "quantity": 1
+    },
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f4",
+      "quantity": 5
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/api/v1/bills/calculate
+Content-Type: application/json
+
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e4",
+  "items": [
+    {
+      "productId": "65a1b2c3d4e5f6a7b8c9d0f1",
+      "quantity": 1,
+      "unitPrice": 990.00
+    }
+  ]
+}
