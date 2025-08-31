@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: billing-discounts-api
+  profiles:
+    active: dev
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: UTC
+    default-property-inclusion: NON_NULL
+
+server:
+  port: 8080
+
+# Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+
+# Application Info
+app:
+  version: 1.0.0
+
+info:
+  app:
+    name: Billing Discounts API
+    description: RESTful API for calculating retail store discounts
+    version: ${app.version}
+
+# OpenAPI Configuration
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
