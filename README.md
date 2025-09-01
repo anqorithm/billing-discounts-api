@@ -85,6 +85,18 @@ The live application can be accessed at: **[https://billing-discounts-api-364622
 
 The health of the production deployment can be checked at the `/actuator/health` endpoint.
 
+## Branching Strategy
+
+This project follows the Trunk-Based Development branching strategy. All developers commit to a single branch, `trunk` (the trunk). This strategy promotes continuous integration and rapid feedback.
+
+<div align="center">
+
+![Trunk-Based Development](assets/tbd.png)
+
+*Caption: A diagram showing the trunk-based development branching strategy.*
+
+</div>
+
 
 ## Getting Started
 
