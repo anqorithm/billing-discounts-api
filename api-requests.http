@@ -1,5 +1,14 @@
 ### Billing Discounts API - HTTP Requests
+<<<<<<< Updated upstream
 ### Base URL: http://localhost:8080
+=======
+
+# # @name local
+# @baseUrl = http://localhost:8080
+
+# @name production  
+@baseUrl = https://billing-discounts-api-36462279645.us-central1.run.app
+>>>>>>> Stashed changes
 
 ###
 GET http://localhost:8080/

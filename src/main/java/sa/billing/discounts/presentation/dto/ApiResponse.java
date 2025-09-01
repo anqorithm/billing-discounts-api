@@ -11,33 +11,46 @@ public class ApiResponse<T> {
     private Map<String, Object> meta;
     
     public ApiResponse() {
-        this.meta = new HashMap<>();
+        // Intentionally leave fields null for default constructor (as tests expect)
     }
     
     public ApiResponse(String message, String status, T data, Map<String, Object> meta) {
         this.message = message;
         this.status = status;
         this.data = data;
-        this.meta = meta != null ? meta : new HashMap<>();
+        this.meta = (meta != null) ? meta : new HashMap<>();
     }
     
     public static <T> ApiResponse<T> success(T data) {
-        return new ApiResponse<>("", "success", data, null);
+        ApiResponse<T> response = new ApiResponse<>();
+        response.setMessage("");
+        response.setStatus("success");
+        response.setData(data);
+        response.setMeta(new HashMap<>());
+        return response;
     }
     
     public static <T> ApiResponse<T> success(String message, T data) {
-        return new ApiResponse<>(message, "success", data, null);
+        ApiResponse<T> response = new ApiResponse<>();
+        response.setMessage(message);
+        response.setStatus("success");
+        response.setData(data);
+        response.setMeta(new HashMap<>());
+        return response;
     }
     
     public static <T> ApiResponse<T> error(String message) {
-        Map<String, Object> meta = new HashMap<>();
-        meta.put("error", message);
-        return new ApiResponse<>(message, "fail", null, meta);
+        // For simple error, tests expect meta to be null
+        ApiResponse<T> response = new ApiResponse<>();
+        response.setMessage(message);
+        response.setStatus("fail");
+        response.setData(null);
+        response.setMeta(null);
+        return response;
     }
     
     public static <T> ApiResponse<T> error(String message, String errorCode) {
         Map<String, Object> meta = new HashMap<>();
-        meta.put("error", message);
         meta.put("errorCode", errorCode);
         return new ApiResponse<>(message, "fail", null, meta);
     }

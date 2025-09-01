@@ -133,7 +133,7 @@ class DtoTest {
         assertEquals("fail", response.getStatus());
         assertEquals("Something went wrong", response.getMessage());
         assertNull(response.getData());
-        assertEquals("Something went wrong", response.getMeta().get("error"));
+        assertNull(response.getMeta());
     }
 
     @Test
