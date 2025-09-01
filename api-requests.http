@@ -1,40 +1,38 @@
 ### Billing Discounts API - HTTP Requests
-<<<<<<< Updated upstream
+
 ### Base URL: http://localhost:8080
-=======
 
 # # @name local
 # @baseUrl = http://localhost:8080
 
 # @name production  
 @baseUrl = https://billing-discounts-api-36462279645.us-central1.run.app
->>>>>>> Stashed changes
 
 ###
-GET http://localhost:8080/
+GET {{baseUrl}}/
 Accept: application/json
 
 ###
-GET http://localhost:8080/api/v1/bills/health
+GET {{baseUrl}}/api/v1/bills/health
 Accept: application/json
 
 ###
-GET http://localhost:8080/actuator/health
+GET {{baseUrl}}/actuator/health
 Accept: application/json
 
 ###
-GET http://localhost:8080/actuator/info
+GET {{baseUrl}}/actuator/info
 Accept: application/json
 
 ###
-GET http://localhost:8080/v3/api-docs
+GET {{baseUrl}}/v3/api-docs
 Accept: application/json
 
 ###
-GET http://localhost:8080/swagger-ui.html
+GET {{baseUrl}}/swagger-ui.html
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -52,7 +50,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -70,7 +68,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -84,7 +82,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -102,7 +100,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -116,7 +114,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -130,7 +128,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -145,7 +143,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -171,7 +169,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -185,7 +183,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -199,7 +197,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -213,7 +211,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -227,7 +225,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -240,7 +238,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -249,7 +247,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -263,7 +261,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -277,7 +275,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {
@@ -304,7 +302,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/v1/bills/calculate
+POST {{baseUrl}}/api/v1/bills/calculate
 Content-Type: application/json
 
 {

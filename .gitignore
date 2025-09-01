@@ -34,3 +34,12 @@ build/
 
 # Logs
 logs/
+
+# Terraform
+.terraform*
+*.tfstate*
+
+# Environment variables
+.env
+.env.local
+.env.*.local

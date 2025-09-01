@@ -4,6 +4,9 @@
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Docker](https://img.shields.io/badge/Docker-blue?logo=docker)
+![Terraform](https://img.shields.io/badge/Terraform-blue?logo=terraform)
+![Deployed](https://img.shields.io/badge/Deployed-us--central1-brightgreen)
+![GCP](https://img.shields.io/badge/GCP-blue?logo=google-cloud)
 ![SonarQube](https://img.shields.io/badge/SonarQube-passing-brightgreen)
 ![Code Coverage](https://img.shields.io/badge/Coverage-92%25-brightgreen)
 
@@ -52,12 +55,6 @@ The application is divided into four main layers, following DDD principles. The 
 
 </div>
 
--   **Presentation**: Handles API requests and responses (`/presentation`).
--   **Application**: Orchestrates the business logic (`/application`).
--   **Domain**: Contains the core business models, rules, and logic (`/domain`).
--   **Infrastructure**: Manages external concerns like database interactions and configuration (`/infrastructure`).
-
-
 ## UML Class Diagram
 
 <div align="center">
@@ -79,8 +76,6 @@ The application is divided into four main layers, following DDD principles. The 
 -   **JaCoCo** for code coverage.
 -   **SonarQube** for code quality analysis.
 
-<<<<<<< Updated upstream
-=======
 ## Deployment
 
 This project is automatically deployed to **Google Cloud Run** using **Terraform**.
@@ -89,7 +84,7 @@ The live application can be accessed at: **[https://billing-discounts-api-364622
 
 The health of the production deployment can be checked at the `/actuator/health` endpoint.
 
->>>>>>> Stashed changes
+
 ## Getting Started
 
 ### Prerequisites

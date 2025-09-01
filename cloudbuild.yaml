@@ -1,0 +1,27 @@
+steps:
+  # Build the application
+  - name: 'maven:3.8.5-openjdk-17'
+    entrypoint: 'mvn'
+    args: ['clean', 'package', '-DskipTests', '-Dspotbugs.skip=true']
+
+  # Build and push Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: ['./scripts/build-and-push.sh']
+    env:
+      - 'PROJECT_ID=ai-credit-product'
+      - 'REGION=us-central1'
+      - 'REPO_NAME=billing-discounts-api-repo'
+      - 'SERVICE_NAME=billing-discounts-api'
+
+  # Deploy with Terraform
+  - name: 'hashicorp/terraform:1.0.0'
+    entrypoint: 'sh'
+    args: ['./scripts/terraform-deploy.sh']
+    env:
+      - 'PROJECT_ID=ai-credit-product'
+      - 'REGION=us-central1'
+      - 'IMAGE_PATH=us-central1-docker.pkg.dev/ai-credit-product/billing-discounts-api-repo/billing-discounts-api:latest'
+
+images:
+  - 'us-central1-docker.pkg.dev/ai-credit-product/billing-discounts-api-repo/billing-discounts-api:latest'

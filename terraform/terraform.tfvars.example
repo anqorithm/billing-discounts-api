@@ -1,0 +1,8 @@
+project_id = "your-gcp-project-id"
+region     = "us-central1"
+image_path = "gcr.io/your-gcp-project-id/billing-discounts-api:latest"
+
+# Optional overrides
+vpc_name             = "default"                 # existing VPC network name
+mongodb_disk_size_gb = 10                        # disk size for MongoDB
+mongodb_allowed_cidrs = ["0.0.0.0/0"]            # restrict in production
