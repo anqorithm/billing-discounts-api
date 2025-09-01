@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/anqorithm/billing-discounts-api/compare/v1.2.0...v1.3.0) (2025-09-01)
+
+
+### Features
+
+* rename CI/CD workflow to Deploy and update release job name to Release Management; add prevent_destroy lifecycle rule for MongoDB resources ([2d93c9a](https://github.com/anqorithm/billing-discounts-api/commit/2d93c9ac79803ed5c005df96c56d6fc37f2724bb))
+
 # [1.2.0](https://github.com/anqorithm/billing-discounts-api/compare/v1.1.0...v1.2.0) (2025-09-01)
 
 
