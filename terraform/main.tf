@@ -33,7 +33,7 @@ resource "google_compute_firewall" "mongo_firewall" {
   source_ranges = ["0.0.0.0/0"]
   
   lifecycle {
-    ignore_changes = [creation_timestamp]
+    ignore_changes = []
   }
 }
 
@@ -45,7 +45,6 @@ resource "google_compute_disk" "mongodb_data" {
   
   lifecycle {
     prevent_destroy = true
-    ignore_changes = [creation_timestamp]
   }
 }
 
@@ -76,7 +75,7 @@ resource "google_compute_instance" "mongodb" {
   
   lifecycle {
     prevent_destroy = true
-    ignore_changes = [creation_timestamp, metadata_startup_script]
+    ignore_changes = [metadata_startup_script]
   }
 }
 
