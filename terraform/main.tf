@@ -44,6 +44,7 @@ resource "google_compute_disk" "mongodb_data" {
   size  = 10
   
   lifecycle {
+    prevent_destroy = true
     ignore_changes = [creation_timestamp]
   }
 }
@@ -72,6 +73,11 @@ resource "google_compute_instance" "mongodb" {
   metadata_startup_script = file("../scripts/setup-mongodb-vm.sh")
 
   tags = ["mongodb"]
+  
+  lifecycle {
+    prevent_destroy = true
+    ignore_changes = [creation_timestamp, metadata_startup_script]
+  }
 }
 
 
