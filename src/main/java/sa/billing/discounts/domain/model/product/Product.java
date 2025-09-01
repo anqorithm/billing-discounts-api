@@ -86,12 +86,24 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Objects.equals(id, product.id);
+        // If both ids are null, compare by business identity (name + price + category)
+        if (this.id == null && product.id == null) {
+            return Objects.equals(this.name, product.name) && 
+                   Objects.equals(this.price, product.price) &&
+                   Objects.equals(this.category, product.category);
+        }
+        // If either id is null (but not both), treat as not equal (distinct transient/persistent entities)
+        if (this.id == null || product.id == null) return false;
+        return Objects.equals(this.id, product.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        // For consistent hashing with equals method
+        if (id != null) {
+            return Objects.hash(id);
+        }
+        return Objects.hash(name, price, category);
     }
     
     @Override

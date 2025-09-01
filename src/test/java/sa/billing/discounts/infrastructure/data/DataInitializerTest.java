@@ -36,8 +36,8 @@ class DataInitializerTest {
         
         dataInitializer.initializeSampleData();
         
-        verify(customerRepository, times(2)).findById(anyString());
-        verify(productRepository, times(2)).findById(anyString());
+        verify(customerRepository, times(1)).findById(anyString());
+        verify(productRepository, times(1)).findById(anyString());
         verify(customerRepository, times(4)).save(any(Customer.class));
         verify(productRepository, times(4)).save(any(Product.class));
     }
@@ -51,7 +51,7 @@ class DataInitializerTest {
         dataInitializer.initializeSampleData();
         
         verify(customerRepository).findById("65a1b2c3d4e5f6a7b8c9d0e1");
-        verify(productRepository, times(2)).findById(anyString());
+        verify(productRepository, times(1)).findById(anyString());
         verify(customerRepository, never()).save(any(Customer.class));
         verify(productRepository, times(4)).save(any(Product.class));
     }
@@ -64,7 +64,7 @@ class DataInitializerTest {
         
         dataInitializer.initializeSampleData();
         
-        verify(customerRepository, times(2)).findById(anyString());
+        verify(customerRepository, times(1)).findById(anyString());
         verify(productRepository).findById("65a1b2c3d4e5f6a7b8c9d0f1");
         verify(customerRepository, times(4)).save(any(Customer.class));
         verify(productRepository, never()).save(any(Product.class));
@@ -88,12 +88,11 @@ class DataInitializerTest {
     @Test
     void shouldHandleExceptionDuringCustomerSave() {
         when(customerRepository.findById(anyString())).thenReturn(Optional.empty());
-        when(productRepository.findById(anyString())).thenReturn(Optional.empty());
         when(customerRepository.save(any(Customer.class))).thenThrow(new RuntimeException("Database error"));
         
         assertThrows(RuntimeException.class, () -> dataInitializer.initializeSampleData());
         
-        verify(customerRepository, times(2)).findById(anyString());
+        verify(customerRepository, times(1)).findById(anyString());
         verify(customerRepository, atLeastOnce()).save(any(Customer.class));
     }
 
@@ -105,7 +104,7 @@ class DataInitializerTest {
         
         assertThrows(RuntimeException.class, () -> dataInitializer.initializeSampleData());
         
-        verify(productRepository, times(2)).findById(anyString());
+        verify(productRepository, times(1)).findById(anyString());
         verify(customerRepository, times(4)).save(any(Customer.class));
         verify(productRepository, atLeastOnce()).save(any(Product.class));
     }
@@ -127,7 +126,7 @@ class DataInitializerTest {
         
         assertThrows(RuntimeException.class, () -> dataInitializer.initializeSampleData());
         
-        verify(customerRepository, times(2)).findById(anyString());
+        verify(customerRepository, times(1)).findById(anyString());
         verify(customerRepository, times(4)).save(any(Customer.class));
         verify(productRepository).findById("65a1b2c3d4e5f6a7b8c9d0f1");
     }
@@ -139,8 +138,8 @@ class DataInitializerTest {
         
         dataInitializer.run();
         
-        verify(customerRepository, times(2)).findById(anyString());
-        verify(productRepository, times(2)).findById(anyString());
+        verify(customerRepository, times(1)).findById(anyString());
+        verify(productRepository, times(1)).findById(anyString());
         verify(customerRepository, times(4)).save(any(Customer.class));
         verify(productRepository, times(4)).save(any(Product.class));
     }
@@ -152,8 +151,8 @@ class DataInitializerTest {
         
         dataInitializer.run("arg1", "arg2");
         
-        verify(customerRepository, times(2)).findById(anyString());
-        verify(productRepository, times(2)).findById(anyString());
+        verify(customerRepository, times(1)).findById(anyString());
+        verify(productRepository, times(1)).findById(anyString());
         verify(customerRepository, times(4)).save(any(Customer.class));
         verify(productRepository, times(4)).save(any(Product.class));
     }

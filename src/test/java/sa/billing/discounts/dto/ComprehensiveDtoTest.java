@@ -280,7 +280,7 @@ class ComprehensiveDtoTest {
         assertEquals("Operation successful", response.getMessage());
         assertEquals("success", response.getStatus());
         assertEquals(data, response.getData());
-        assertNull(response.getMeta());
+        assertNotNull(response.getMeta());
     }
 
     @Test

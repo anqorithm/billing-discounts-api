@@ -94,12 +94,25 @@ public class Customer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return Objects.equals(id, customer.id);
+        // If both ids are null, compare by business identity (name + email + type + registrationDate)
+        if (this.id == null && customer.id == null) {
+            return Objects.equals(this.name, customer.name) && 
+                   Objects.equals(this.email, customer.email) &&
+                   Objects.equals(this.type, customer.type) &&
+                   Objects.equals(this.registrationDate, customer.registrationDate);
+        }
+        // If either id is null (but not both), treat as not equal (distinct transient/persistent entities)
+        if (this.id == null || customer.id == null) return false;
+        return Objects.equals(this.id, customer.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        // For consistent hashing with equals method
+        if (id != null) {
+            return Objects.hash(id);
+        }
+        return Objects.hash(name, email, type, registrationDate);
     }
     
     @Override

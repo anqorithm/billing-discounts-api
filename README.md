@@ -8,7 +8,7 @@
 ![Deployed](https://img.shields.io/badge/Deployed-us--central1-brightgreen)
 ![GCP](https://img.shields.io/badge/GCP-blue?logo=google-cloud)
 ![SonarQube](https://img.shields.io/badge/SonarQube-passing-brightgreen)
-![Code Coverage](https://img.shields.io/badge/Coverage-87%25-brightgreen)
+![Code Coverage](https://img.shields.io/badge/Coverage-92%25-brightgreen)
 
 A Spring Boot application that calculates bill discounts for retail customers. The system handles different customer types and applies appropriate discounts based on business rules.
 
@@ -81,6 +81,9 @@ The application is divided into four main layers, following DDD principles. The 
 This project is automatically deployed to **Google Cloud Run** using **Terraform**.
 
 The live application can be accessed at: **[https://billing-discounts-api-36462279645.us-central1.run.app](https://billing-discounts-api-36462279645.us-central1.run.app)**
+
+The health of the production deployment can be checked at the `/actuator/health` endpoint.
+
 
 ## Getting Started
 
@@ -283,7 +286,7 @@ Request with a `customerId` that does not exist.
 
     <div align="center">
 
-    ![Code Coverage Report](assets/coverage-report.png)
+    ![Code Coverage Report](./assets/coverage-report.png)
 
     *Caption: JaCoCo code coverage report showing 87% overall coverage.*
 
@@ -323,13 +326,41 @@ You can use the [api-requests.http](api-requests.http) file with a compatible RE
 
 </div>
 
-<div align="center">
-
-![Application Health Check](assets/actuator.png)
+```json
+{
+  "status": "UP",
+  "components": {
+    "diskSpace": {
+      "status": "UP",
+      "details": {
+        "total": 1006668316672,
+        "free": 820512948224,
+        "threshold": 10485760,
+        "path": "/home/abdullah/Desktop/billing-discounts-api/.",
+        "exists": true
+      }
+    },
+    "mongo": {
+      "status": "UP",
+      "details": {
+        "maxWireVersion": 25
+      }
+    },
+    "ping": {
+      "status": "UP"
+    },
+    "ssl": {
+      "status": "UP",
+      "details": {
+        "validChains": [],
+        "invalidChains": []
+      }
+    }
+  }
+}
+```
 
 *Caption: Spring Boot Actuator health endpoint response.*
-
-</div>
 
 ## Author
 
