@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/anqorithm/billing-discounts-api/compare/v1.3.0...v1.3.1) (2025-09-01)
+
+
+### Bug Fixes
+
+* remove unnecessary ignore_changes for creation_timestamp in MongoDB resources and update external IP address ([0c4d639](https://github.com/anqorithm/billing-discounts-api/commit/0c4d63927c468834b9209a7b6e5a0d174f02c540))
+
 # [1.3.0](https://github.com/anqorithm/billing-discounts-api/compare/v1.2.0...v1.3.0) (2025-09-01)
 
 
