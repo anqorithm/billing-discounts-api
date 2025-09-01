@@ -1,8 +1,8 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/billing_discounts
-      auto-index-creation: true
+      uri: ${MONGODB_URI:mongodb://localhost:27017/billing_discounts}
+      auto-index-creation: ${MONGODB_AUTO_INDEX_CREATION:true}
   devtools:
     restart:
       enabled: true
@@ -10,16 +10,17 @@ spring:
       enabled: true
 
 discount:
-  employee-percentage: 30
-  affiliate-percentage: 10
-  loyalty-percentage: 5
-  bill-threshold: 100
-  bill-discount-amount: 5
+  employee-percentage: ${DISCOUNT_EMPLOYEE_PERCENTAGE:30}
+  affiliate-percentage: ${DISCOUNT_AFFILIATE_PERCENTAGE:10}
+  loyalty-percentage: ${DISCOUNT_LOYALTY_PERCENTAGE:5}
+  bill-threshold: ${DISCOUNT_BILL_THRESHOLD:100}
+  bill-discount-amount: ${DISCOUNT_BILL_DISCOUNT_AMOUNT:5}
 
 # Logging Configuration for Development
 logging:
   level:
-    sa.billing.discounts: DEBUG
+    root: ${LOGGING_LEVEL_ROOT:INFO}
+    sa.billing.discounts: ${LOGGING_LEVEL_SA_BILLING_DISCOUNTS:DEBUG}
     org.springframework.data.mongodb: INFO
     org.springframework.security: DEBUG
     org.springframework.web: DEBUG
