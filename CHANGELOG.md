@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/anqorithm/billing-discounts-api/compare/v1.0.0...v1.1.0) (2025-09-01)
+
+
+### Features
+
+* add CI/CD workflow for deploying to GCP on trunk branch ([30da367](https://github.com/anqorithm/billing-discounts-api/commit/30da367f2cd6c065a493b31e16cc3df09ee48c57))
+
 # 1.0.0 (2025-09-01)
 
 
