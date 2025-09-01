@@ -1,0 +1,24 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/billing-discounts-db}
+      auto-index-creation: ${MONGODB_AUTO_INDEX_CREATION:true}
+
+discount:
+  employee-percentage: ${DISCOUNT_EMPLOYEE_PERCENTAGE:30}
+  affiliate-percentage: ${DISCOUNT_AFFILIATE_PERCENTAGE:10}
+  loyalty-percentage: ${DISCOUNT_LOYALTY_PERCENTAGE:5}
+  bill-threshold: ${DISCOUNT_BILL_THRESHOLD:100}
+  bill-discount-amount: ${DISCOUNT_BILL_DISCOUNT_AMOUNT:5}
+
+# Production Logging Configuration
+logging:
+  level:
+    root: ${LOGGING_LEVEL_ROOT:INFO}
+    sa.billing.discounts: ${LOGGING_LEVEL_SA_BILLING_DISCOUNTS:INFO}
+    org.springframework.data.mongodb: WARN
+    org.springframework.security: WARN
+    org.springframework.web: WARN
+    org.springframework.boot.actuate: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
