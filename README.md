@@ -5,8 +5,9 @@
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Docker](https://img.shields.io/badge/Docker-blue?logo=docker)
 ![Terraform](https://img.shields.io/badge/Terraform-blue?logo=terraform)
-![Deployed](https://img.shields.io/badge/Deployed-us--central1-brightgreen)
 ![GCP](https://img.shields.io/badge/GCP-blue?logo=google-cloud)
+[![CI/CD](https://github.com/anqorithm/billing-discounts-api/actions/workflows/cicd.yml/badge.svg)](https://github.com/anqorithm/billing-discounts-api/actions/workflows/cicd.yml)
+![Deployed](https://img.shields.io/badge/Deployed-us--central1-brightgreen)
 ![SonarQube](https://img.shields.io/badge/SonarQube-passing-brightgreen)
 ![Code Coverage](https://img.shields.io/badge/Coverage-92%25-brightgreen)
 
@@ -76,9 +77,9 @@ The application is divided into four main layers, following DDD principles. The 
 -   **JaCoCo** for code coverage.
 -   **SonarQube** for code quality analysis.
 
-## Deployment
+## CI/CD and Deployment
 
-This project is automatically deployed to **Google Cloud Run** using **Terraform**.
+This project uses a fully automated CI/CD pipeline with GitHub Actions. The `trunk` branch serves as the main branch, and every push triggers the pipeline to build, test, and deploy the application to **Google Cloud Run** using **Terraform**.
 
 The live application can be accessed at: **[https://billing-discounts-api-36462279645.us-central1.run.app](https://billing-discounts-api-36462279645.us-central1.run.app)**
 
@@ -475,4 +476,4 @@ You can use the [api-requests.http](api-requests.http) file with a compatible RE
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.details.
