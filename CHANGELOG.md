@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/anqorithm/billing-discounts-api/compare/v1.3.1...v1.4.0) (2025-09-01)
+
+
+### Features
+
+* update README with branching strategy details and add supporting asset ([ac4eba6](https://github.com/anqorithm/billing-discounts-api/commit/ac4eba685ef9e1c85790ee8e872d6dfdc978694f))
+
 ## [1.3.1](https://github.com/anqorithm/billing-discounts-api/compare/v1.3.0...v1.3.1) (2025-09-01)
 
 
