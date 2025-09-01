@@ -135,7 +135,7 @@ The main endpoint calculates the final bill after applying discounts.
 
 ### Scenario 1: Employee Discount
 
-Request for an employee purchasing a laptop and a t-shirt.
+Request for an employee purchasing a gaming laptop and cotton t-shirts.
 
 **Request**:
 ```json
@@ -156,25 +156,45 @@ Request for an employee purchasing a laptop and a t-shirt.
 
 ```json
 {
-    "status": "success",
-    "data": {
-        "customerId": "65a1b2c3d4e5f6a7b8c9d0e1",
-        "items": [
-            {"productId": "65a1b2c3d4e5f6a7b8c9d0f1", "quantity": 1, "unitPrice": 1500.00, "totalPrice": 1500.00},
-            {"productId": "65a1b2c3d4e5f6a7b8c9d0f3", "quantity": 2, "unitPrice": 25.00, "totalPrice": 50.00}
-        ],
-        "subtotal": 1550.00,
-        "percentageBasedDiscount": 465.00,
-        "billBasedDiscount": 75.00,
-        "totalDiscount": 540.00,
-        "netAmount": 1010.00
-    }
+  "message": "Bill calculated successfully",
+  "status": "success",
+  "data": {
+    "customerId": "65a1b2c3d4e5f6a7b8c9d0e1",
+    "items": [
+      {
+        "productId": "65a1b2c3d4e5f6a7b8c9d0f1",
+        "productName": "gaming laptop",
+        "category": "ELECTRONICS",
+        "quantity": 1,
+        "unitPrice": 1500.00,
+        "totalPrice": 1500.00,
+        "eligibleForPercentageDiscount": true
+      },
+      {
+        "productId": "65a1b2c3d4e5f6a7b8c9d0f3",
+        "productName": "cotton t-shirt",
+        "category": "CLOTHING",
+        "quantity": 2,
+        "unitPrice": 25.00,
+        "totalPrice": 50.00,
+        "eligibleForPercentageDiscount": true
+      }
+    ],
+    "subtotal": 1550.00,
+    "percentageBasedDiscount": 465.00,
+    "percentageDiscountType": "EMPLOYEE",
+    "billBasedDiscount": 75.00,
+    "totalDiscount": 540.00,
+    "netAmount": 1010.00,
+    "calculatedAt": "2025-09-01T10:00:00Z"
+  },
+  "meta": {}
 }
 ```
 
 ### Scenario 2: Affiliate Discount (with Groceries)
 
-Request for an affiliate purchasing a book and some apples (groceries).
+Request for an affiliate purchasing a programming book and fresh apples (groceries).
 
 **Request**:
 ```json
@@ -195,25 +215,45 @@ Request for an affiliate purchasing a book and some apples (groceries).
 
 ```json
 {
-    "status": "success",
-    "data": {
-        "customerId": "65a1b2c3d4e5f6a7b8c9d0e2",
-        "items": [
-            {"productId": "65a1b2c3d4e5f6a7b8c9d0f4", "quantity": 1, "unitPrice": 45.00, "totalPrice": 45.00},
-            {"productId": "65a1b2c3d4e5f6a7b8c9d0f2", "quantity": 10, "unitPrice": 5.99, "totalPrice": 59.90}
-        ],
-        "subtotal": 104.90,
-        "percentageBasedDiscount": 4.50,
-        "billBasedDiscount": 5.00,
-        "totalDiscount": 9.50,
-        "netAmount": 95.40
-    }
+  "message": "Bill calculated successfully",
+  "status": "success",
+  "data": {
+    "customerId": "65a1b2c3d4e5f6a7b8c9d0e2",
+    "items": [
+      {
+        "productId": "65a1b2c3d4e5f6a7b8c9d0f4",
+        "productName": "programming book",
+        "category": "BOOKS",
+        "quantity": 1,
+        "unitPrice": 45.00,
+        "totalPrice": 45.00,
+        "eligibleForPercentageDiscount": true
+      },
+      {
+        "productId": "65a1b2c3d4e5f6a7b8c9d0f2",
+        "productName": "fresh apples",
+        "category": "GROCERY",
+        "quantity": 10,
+        "unitPrice": 5.99,
+        "totalPrice": 59.90,
+        "eligibleForPercentageDiscount": false
+      }
+    ],
+    "subtotal": 104.90,
+    "percentageBasedDiscount": 4.50,
+    "percentageDiscountType": "AFFILIATE",
+    "billBasedDiscount": 5.00,
+    "totalDiscount": 9.50,
+    "netAmount": 95.40,
+    "calculatedAt": "2025-09-01T10:00:00Z"
+  },
+  "meta": {}
 }
 ```
 
 ### Scenario 3: Regular Customer (No Percentage Discount)
 
-Request for a regular customer (tenure < 2 years) with a bill over $100.
+Request for a regular customer (tenure < 2 years) purchasing cotton t-shirts.
 
 **Request**:
 ```json
@@ -233,23 +273,36 @@ Request for a regular customer (tenure < 2 years) with a bill over $100.
 
 ```json
 {
-    "status": "success",
-    "data": {
-        "customerId": "65a1b2c3d4e5f6a7b8c9d0e4",
-        "items": [
-            {"productId": "65a1b2c3d4e5f6a7b8c9d0f3", "quantity": 5, "unitPrice": 25.00, "totalPrice": 125.00}
-        ],
-        "subtotal": 125.00,
-        "percentageBasedDiscount": 0.00,
-        "billBasedDiscount": 5.00,
-        "totalDiscount": 5.00,
-        "netAmount": 120.00
-    }
+  "message": "Bill calculated successfully",
+  "status": "success",
+  "data": {
+    "customerId": "65a1b2c3d4e5f6a7b8c9d0e4",
+    "items": [
+      {
+        "productId": "65a1b2c3d4e5f6a7b8c9d0f3",
+        "productName": "cotton t-shirt",
+        "category": "CLOTHING",
+        "quantity": 5,
+        "unitPrice": 25.00,
+        "totalPrice": 125.00,
+        "eligibleForPercentageDiscount": true
+      }
+    ],
+    "subtotal": 125.00,
+    "percentageBasedDiscount": 0.00,
+    "percentageDiscountType": "NONE",
+    "billBasedDiscount": 5.00,
+    "totalDiscount": 5.00,
+    "netAmount": 120.00,
+    "calculatedAt": "2025-09-01T10:00:00Z"
+  },
+  "meta": {}
 }
 ```
 
-### Scenario 4: Error Handling (Invalid Customer)
+### Scenario 4: Error Handling
 
+#### Customer Not Found
 Request with a `customerId` that does not exist.
 
 **Request**:
@@ -262,12 +315,66 @@ Request with a `customerId` that does not exist.
 }
 ```
 
-**Response**:
+**Response (500)**:
 ```json
 {
-    "status": "error",
-    "message": "Customer not found with ID: invalid-customer-id",
-    "timestamp": "2025-09-01T10:00:00Z"
+  "message": "Failed to calculate bill: Customer not found with ID: invalid-customer-id",
+  "status": "fail",
+  "meta": {
+    "error": "Failed to calculate bill: Customer not found with ID: invalid-customer-id"
+  }
+}
+```
+
+#### Validation Errors
+Request with missing required fields.
+
+**Request**:
+```json
+{
+  "items": []
+}
+```
+
+**Response (400)**:
+```json
+{
+  "message": "Validation failed",
+  "status": "fail",
+  "data": {
+    "customerId": "Customer ID cannot be null",
+    "items": "Bill items cannot be empty"
+  },
+  "meta": {
+    "errorCode": "VALIDATION_ERROR"
+  }
+}
+```
+
+#### Invalid Quantity
+Request with negative quantity.
+
+**Request**:
+```json
+{
+  "customerId": "65a1b2c3d4e5f6a7b8c9d0e1",
+  "items": [
+    { "productId": "65a1b2c3d4e5f6a7b8c9d0f1", "quantity": -1 }
+  ]
+}
+```
+
+**Response (400)**:
+```json
+{
+  "message": "Validation failed",
+  "status": "fail",
+  "data": {
+    "items[0].quantity": "Quantity must be at least 1"
+  },
+  "meta": {
+    "errorCode": "VALIDATION_ERROR"
+  }
 }
 ```
 
