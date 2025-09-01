@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/anqorithm/billing-discounts-api/compare/v1.1.0...v1.2.0) (2025-09-01)
+
+
+### Features
+
+* enhance README with CI/CD details and update deployment section ([6f06f01](https://github.com/anqorithm/billing-discounts-api/commit/6f06f015114154d7b27a5fb4b1e557d7c923edfb))
+
 # [1.1.0](https://github.com/anqorithm/billing-discounts-api/compare/v1.0.0...v1.1.0) (2025-09-01)
 
 
