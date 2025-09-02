@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/anqorithm/billing-discounts-api/compare/v1.4.0...v1.5.0) (2025-09-02)
+
+
+### Features
+
+* update sonar.png asset for improved quality ([1690de4](https://github.com/anqorithm/billing-discounts-api/commit/1690de4868f1b01fe01517b9223a5b223b6fc903))
+
 # [1.4.0](https://github.com/anqorithm/billing-discounts-api/compare/v1.3.1...v1.4.0) (2025-09-01)
 
 
